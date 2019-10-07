@@ -37,11 +37,22 @@ module HealthCheck
       end
     end
 
+    def version_number
+      begin
+        `git log --pretty=format:'%h' -n 1`
+      rescue Exception => e
+        'null'
+      end
+    end
+
     protected
 
     def send_response(healthy, msg, text_status, obj_status)
-      msg ||= healthy ? HealthCheck.success : HealthCheck.failure
-      obj = { :healthy => healthy, :message => msg}
+      # msg ||= healthy ? HealthCheck.success : HealthCheck.failure
+      state ||= healthy ? HealthCheck.up : HealthCheck.down
+      # obj = { :healthy => healthy, :message => msg}
+      obj = { status: state, version: version_number}
+      obj.merge!(message: msg) unless msg.nil?
       respond_to do |format|
         format.html { render :plain => msg, :status => text_status, :content_type => 'text/plain' }
         format.json { render :json => obj, :status => obj_status }

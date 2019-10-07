@@ -4,7 +4,7 @@
 module HealthCheck
 
   class Engine < Rails::Engine
-    cattr_accessor :routes_explicitly_defined 
+    cattr_accessor :routes_explicitly_defined
   end
 
   # Text output upon success
@@ -14,6 +14,14 @@ module HealthCheck
   # Text output upon failure
   mattr_accessor :failure
   self.failure = "failure"
+
+    # Text output upon success
+  mattr_accessor :up
+  self.up = "UP"
+
+  # Text output upon failure
+  mattr_accessor :down
+  self.down = "DOWN"
 
   # Timeout in seconds used when checking smtp server
   mattr_accessor :smtp_timeout
