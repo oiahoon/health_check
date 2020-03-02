@@ -64,7 +64,7 @@ Note: rails 4.0 also checks migrations by default in development mode and throws
 
 Add the following line to Gemfile
 
-    gem "health_check"
+    gem "health_check", git: 'https://github.com/oiahoon/health_check'
 
 And then execute
 
