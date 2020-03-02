@@ -37,6 +37,7 @@ module HealthCheck
       end
     end
 
+    # change to bamboo
     def version_number
       begin
         `git log --pretty=format:'%h' -n 1`
@@ -51,7 +52,7 @@ module HealthCheck
       # msg ||= healthy ? HealthCheck.success : HealthCheck.failure
       state ||= healthy ? HealthCheck.up : HealthCheck.down
       # obj = { :healthy => healthy, :message => msg}
-      obj = { status: state, version: version_number}
+      obj = { status: state}
       obj.merge!(message: msg) unless msg.nil?
       respond_to do |format|
         format.html { render :plain => msg, :status => text_status, :content_type => 'text/plain' }
