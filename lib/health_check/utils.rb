@@ -63,7 +63,7 @@ module HealthCheck
             errors << HealthCheck::RedisHealthCheck.check
           when 's3'
             errors << HealthCheck::S3HealthCheck.check
-          when "standard"
+          when "standard", "healthcheck"
             errors << HealthCheck::Utils.process_checks(HealthCheck.standard_checks, called_from_middleware)
           when "middleware"
             errors << "Health check not called from middleware - probably not installed as middleware." unless called_from_middleware

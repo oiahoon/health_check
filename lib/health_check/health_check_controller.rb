@@ -37,6 +37,11 @@ module HealthCheck
       end
     end
 
+    # make sure the APP start up successfuly
+    def status
+      send_response true, nil, :ok, :ok
+    end
+
     # change to bamboo
     def version_number
       begin

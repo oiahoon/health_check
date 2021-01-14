@@ -39,7 +39,7 @@ The health_check controller disables sessions for versions that eagerly load ses
 
 == Checks
 
-* standard (default) - site, database and migrations checks are run plus email if ActionMailer is defined and it is not using the default configuration
+* standard/healthcheck (default) - site, database and migrations checks are run plus email if ActionMailer is defined and it is not using the default configuration
 * all / full - all checks are run (can be overriden in config block)
 * cache - checks that a value can be written to the cache
 * custom - runs checks added via config.add_custom_check
@@ -151,7 +151,7 @@ To change the configuration of health_check, create a file `config/initializers/
       config.include_error_in_response_body = false
     end
 
-You may call add_custom_check multiple times with different tests. These tests will be included in the default list ("standard").
+You may call add_custom_check multiple times with different tests. These tests will be included in the default list ("standard" or "healthcheck").
 
 If you have a catchall route then add the following line above the catch all route (in `config/routes.rb`):
    health_check_routes
